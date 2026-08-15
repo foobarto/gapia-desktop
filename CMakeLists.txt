@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(gapia-desktop VERSION 0.1.2 LANGUAGES CXX)
+project(gapia-desktop VERSION 0.1.3 LANGUAGES CXX)
 
 option(GAPIA_ENABLE_VITURE "Build the optional official VITURE SDK backend" OFF)
 set(GAPIA_VITURE_SDK_DIR "" CACHE PATH "Root of an extracted VITURE Linux SDK")

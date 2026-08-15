@@ -15,7 +15,13 @@ service_source=$project_root/packaging/systemd/gapia-display.service
 desktop_source=$project_root/packaging/applications/io.github.gapiadesktop.Gapia.desktop
 extension_uuid=gapia@desktop.local
 extension_zip=$project_root/build/extension/$extension_uuid.shell-extension.zip
-sdk_dir=${GAPIA_VITURE_SDK_DIR:-$project_root/.tmp/sdk-analysis/current-sdk}
+sdk_dir_was_explicit=0
+if [ -n "${GAPIA_VITURE_SDK_DIR:-}" ]; then
+    sdk_dir=$GAPIA_VITURE_SDK_DIR
+    sdk_dir_was_explicit=1
+else
+    sdk_dir=$project_root/.tmp/sdk-analysis/current-sdk
+fi
 setup_command=${GAPIA_SETUP_COMMAND:-$0}
 if [ "${GAPIA_SETUP_ELEVATES:-0}" = 1 ]; then
     setup_invocation=$setup_command
@@ -49,6 +55,7 @@ while [ "$#" -gt 0 ]; do
                 exit 2
             fi
             sdk_dir=$2
+            sdk_dir_was_explicit=1
             shift 2
             ;;
         -h|--help)
@@ -125,13 +132,17 @@ as_user() {
 sdk_header=$sdk_dir/include/viture_glasses_provider.h
 sdk_runtime=$sdk_dir/x86_64/libglasses.so
 if [ ! -r "$sdk_header" ] || [ ! -r "$sdk_runtime" ]; then
-    printf 'VITURE Linux SDK support is not installed from %s.\n' \
-        "$sdk_dir" >&2
-    if [ ! -r "$sdk_header" ]; then
-        printf 'Missing SDK header: %s\n' "$sdk_header" >&2
-    fi
-    if [ ! -r "$sdk_runtime" ]; then
-        printf 'Missing SDK runtime: %s\n' "$sdk_runtime" >&2
+    if [ "$sdk_dir_was_explicit" -eq 1 ]; then
+        printf 'VITURE Linux SDK support is incomplete at %s.\n' \
+            "$sdk_dir" >&2
+        if [ ! -r "$sdk_header" ]; then
+            printf 'Missing SDK header: %s\n' "$sdk_header" >&2
+        fi
+        if [ ! -r "$sdk_runtime" ]; then
+            printf 'Missing SDK runtime: %s\n' "$sdk_runtime" >&2
+        fi
+    else
+        printf '%s\n' 'VITURE Linux SDK support is not installed.' >&2
     fi
     printf '\nTo finish setup:\n' >&2
     printf '  1. Download the Linux SDK from https://www.viture.com/developer\n' >&2
