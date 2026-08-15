@@ -35,6 +35,10 @@ validates the SDK and hardware access before installing the udev rule, user
 service, settings application, icons, and panel indicator. The SDK is never
 downloaded or redistributed by Gapia Desktop.
 
+Run `gapia-desktop-setup-host` exactly as shown, without a `sudo` prefix. The
+Homebrew wrapper elevates itself by absolute path so it also works on Linux
+systems where `sudo` does not search Homebrew's bin directory.
+
 ## What works
 
 - Standard `1920x1080@60` with anchored 3DoF, smooth follow, or 0DoF.
