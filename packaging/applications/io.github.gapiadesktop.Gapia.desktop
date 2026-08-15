@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Gapia Desktop
+Exec=gapia-desktop
+Icon=io.github.gapiadesktop.Gapia
+Categories=Settings;HardwareSettings;GNOME;GTK;
+StartupNotify=true

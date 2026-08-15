@@ -1,0 +1,7 @@
+{
+  "name": "Gapia Desktop",
+  "description": "Display status and settings for connected XR glasses",
+  "uuid": "gapia@desktop.local",
+  "shell-version": ["50"],
+  "version": 2
+}

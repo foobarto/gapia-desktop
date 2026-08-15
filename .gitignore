@@ -1,0 +1,20 @@
+.tmp/
+.agents/
+.codex/
+.cache/
+.venv/
+build/
+build-*/
+dist/
+__pycache__/
+*.py[cod]
+compile_commands.json
+CMakeUserPresets.json
+
+# The VITURE SDK is downloaded under a click-through license. Keep local SDK
+# archives, extracted headers, and binaries out of this project.
+vendor/
+VITURE_XR_Glasses_SDK*/
+libglasses.so
+viture_glasses_provider.h
+*.sdk.zip

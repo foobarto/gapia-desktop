@@ -1,0 +1,80 @@
+name: Bug report
+description: Report reproducible incorrect behavior in Gapia Desktop
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not report vulnerabilities here. Use the repository Security tab for private reporting.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Native glasses control
+        - GNOME display policy
+        - Settings application
+        - Panel indicator
+        - Installation or packaging
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware
+      description: Glasses vendor, model, and USB ID, if applicable
+      placeholder: VITURE Beast, 35ca:1211
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware and SDK
+      description: Firmware and SDK versions, if applicable
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, GNOME Shell, Wayland/X11, and Gapia Desktop version or commit
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest reliable sequence that demonstrates the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or configuration
+      description: Remove names, paths, serial numbers, application titles, and licensed SDK content.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched existing issues for this problem.
+          required: true
+        - label: I removed private information and licensed SDK material.
+          required: true
+        - label: I agree to follow the Code of Conduct.
+          required: true

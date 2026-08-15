@@ -1,0 +1,107 @@
+class GapiaDesktop < Formula
+  desc "GNOME display controls for VITURE XR glasses"
+  homepage "https://github.com/@GITHUB_REPOSITORY@"
+  url "@SOURCE_URL@"
+  version "@VERSION@"
+  sha256 "@SHA256@"
+  license any_of: ["MIT", "Apache-2.0"]
+
+  depends_on "cmake" => :build
+  depends_on "ninja" => :build
+  depends_on "gtk4"
+  depends_on "libadwaita"
+  depends_on "pygobject3"
+
+  on_linux do
+    depends_on "gcc" => :build
+  end
+
+  def install
+    sdk = ENV.fetch("GAPIA_VITURE_SDK_DIR", nil)
+    args = %w[
+      -S .
+      -B build
+      -G Ninja
+      -DCMAKE_BUILD_TYPE=Release
+    ]
+    if sdk
+      header = Pathname(sdk)/"include/viture_glasses_provider.h"
+      runtime = Pathname(sdk)/"x86_64/libglasses.so"
+      odie "VITURE SDK header not found at #{header}" unless header.exist?
+      odie "VITURE SDK runtime not found at #{runtime}" unless runtime.exist?
+      args += ["-DGAPIA_ENABLE_VITURE=ON", "-DGAPIA_VITURE_SDK_DIR=#{sdk}"]
+    end
+
+    system "cmake", *args
+    system "cmake", "--build", "build"
+
+    %w[
+      .github
+      CHANGELOG.md
+      CMakeLists.txt
+      CODE_OF_CONDUCT.md
+      CONTRIBUTING.md
+      LICENSE
+      LICENSE-APACHE
+      LICENSE-MIT
+      README.md
+      SECURITY.md
+      SUPPORT.md
+      assets
+      config
+      docs
+      gnome-extension
+      include
+      packaging
+      scripts
+      src
+      tests
+    ].each { |path| pkgshare.install path }
+
+    controller = pkgshare/"scripts/native_display_controller.py"
+    libexec.install_symlink controller
+    libexec.install_symlink controller => "gapia-native-controller"
+    libexec.install_symlink \
+      pkgshare/"scripts/native_display_settings.py" => "gapia-desktop"
+    libexec.install_symlink \
+      pkgshare/"scripts/gnome_display_policy.py" => "gapia-gnome-display-policy"
+    bin.write_exec_script libexec/"gapia-desktop"
+
+    if sdk
+      libexec.install "build/gapia-native-display" => "gapia-native-display.bin"
+      (libexec/"gapia-native-display").write <<~SH
+        #!/bin/sh
+        export LD_LIBRARY_PATH="#{sdk}/x86_64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        exec "#{libexec}/gapia-native-display.bin" "$@"
+      SH
+      chmod 0755, libexec/"gapia-native-display"
+    end
+
+    Dir[(pkgshare/"assets/icons/*x*/apps/*.png").to_s].each do |icon|
+      size = Pathname(icon).dirname.dirname.basename
+      (share/"icons/hicolor"/size/"apps").install_symlink icon
+    end
+    (share/"applications").install_symlink \
+      pkgshare/"packaging/applications/io.github.gapiadesktop.Gapia.desktop"
+    (share/"gnome-shell/extensions").install_symlink \
+      pkgshare/"gnome-extension/gapia@desktop.local"
+  end
+
+  def caveats
+    <<~EOS
+      The VITURE SDK is licensed separately and is not included.
+
+      For native VITURE controls, install from source while pointing at an
+      extracted Linux SDK that will remain at that path:
+        GAPIA_VITURE_SDK_DIR=/path/to/sdk brew install --build-from-source gapia-desktop
+
+      Finish GNOME udev, user-service, and panel setup with one idempotent call:
+        sudo #{pkgshare}/scripts/setup-host.sh --sdk-dir /path/to/sdk
+    EOS
+  end
+
+  test do
+    system "python3", libexec/"native_display_controller.py", "--config",
+           pkgshare/"config/gapia.json", "--check-config"
+  end
+end

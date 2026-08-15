@@ -1,0 +1,8 @@
+{
+  "mode": "ultrawide-3840x1080-60",
+  "dof": "anchored",
+  "screen_size": "large",
+  "distance": 9,
+  "make_glasses_primary": false,
+  "disable_built_in_display": false
+}

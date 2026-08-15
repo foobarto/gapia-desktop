@@ -1,0 +1,14 @@
+[Unit]
+Description=Gapia Desktop display controller
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+Environment=LD_LIBRARY_PATH=%h/.local/lib/gapia
+ExecStart=%h/.local/libexec/gapia-native-controller --config %h/.config/gapia/config.json
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

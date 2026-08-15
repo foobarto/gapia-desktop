@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-package:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes \
+            cmake g++ gjs gnome-shell ninja-build python3-gi
+
+      - name: Audit licensed SDK boundary
+        run: ./scripts/check-release-boundary.sh .
+
+      - name: Build and test SDK-independent components
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON3_EXECUTABLE=/usr/bin/python3
+          cmake --build build
+          ctest --test-dir build --output-on-failure
+          cmake --build build --target extension-package
+
+      - name: Validate scripts and Homebrew template
+        run: |
+          sh -n scripts/setup-host.sh
+          sh -n scripts/check-release-boundary.sh
+          sh -n scripts/create-release-archive.sh
+          ruby -c Formula/gapia-desktop.rb.in
+          python3 -m py_compile scripts/*.py tests/*.py
+
+      - name: Build audited source distribution
+        run: ./scripts/create-release-archive.sh 0.0.0-ci dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gapia-desktop-source
+          path: dist/gapia-desktop-0.0.0-ci.tar.gz
+          if-no-files-found: error
+

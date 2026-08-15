@@ -1,0 +1,5 @@
+# Allow the active local desktop user to access the VITURE Beast control
+# device without running the application as root. The camera is a separate
+# UVC device and receives its own seat access through the standard video rules.
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="35ca", ATTR{idProduct}=="1211", MODE:="0660", TAG+="uaccess"
+SUBSYSTEM=="hidraw", KERNEL=="hidraw[0-9]*", ATTRS{idVendor}=="35ca", ATTRS{idProduct}=="1211", MODE:="0660", TAG+="uaccess"

@@ -1,0 +1,16 @@
+Gapia Desktop is licensed under either of
+
+  * the Apache License, Version 2.0 (LICENSE-APACHE or
+    https://www.apache.org/licenses/LICENSE-2.0), or
+  * the MIT License (LICENSE-MIT or https://opensource.org/licenses/MIT)
+
+at your option.
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+
+This choice covers only Gapia Desktop's original source and assets. It does not
+license, sublicense, or redistribute the separately supplied VITURE SDK.
+
+Unless explicitly stated otherwise, any contribution intentionally submitted
+for inclusion in Gapia Desktop by you shall be dual-licensed as above, without
+any additional terms or conditions.
