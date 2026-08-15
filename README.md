@@ -1,6 +1,7 @@
 # Gapia Desktop
 
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE)
+[![CI](https://github.com/foobarto/gapia-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/foobarto/gapia-desktop/actions/workflows/ci.yml)
 
 Gapia Desktop controls spatial display modes for XR glasses on GNOME/Wayland.
 The first supported device is VITURE Beast on GNOME 50.

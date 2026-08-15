@@ -8,8 +8,9 @@ native control capabilities have not yet been verified for Gapia Desktop.
 
 ## Getting help
 
-Use the repository issue forms for reproducible Gapia Desktop problems and
-feature requests. Before filing a bug, collect:
+Use GitHub Discussions for general questions. Use the repository issue forms
+for reproducible Gapia Desktop problems and feature requests. Before filing a
+bug, collect:
 
 - hardware model, USB ID, and firmware version;
 - OS, GNOME Shell, and Gapia Desktop versions;
