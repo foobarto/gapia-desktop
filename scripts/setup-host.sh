@@ -16,10 +16,11 @@ desktop_source=$project_root/packaging/applications/io.github.gapiadesktop.Gapia
 extension_uuid=gapia@desktop.local
 extension_zip=$project_root/build/extension/$extension_uuid.shell-extension.zip
 sdk_dir=${GAPIA_VITURE_SDK_DIR:-$project_root/.tmp/sdk-analysis/current-sdk}
+setup_command=${GAPIA_SETUP_COMMAND:-$0}
 
 usage() {
     cat <<EOF
-Usage: sudo $0 [--sdk-dir PATH]
+Usage: sudo $setup_command [--sdk-dir PATH]
 
 Set up this atomic GNOME host for Gapia Desktop development. The script:
   - installs CMake and Ninja through Homebrew when the host lacks them;
@@ -58,7 +59,8 @@ while [ "$#" -gt 0 ]; do
 done
 
 if [ "$(id -u)" -ne 0 ]; then
-    printf 'Run this script once through sudo: sudo %s\n' "$0" >&2
+    printf 'Run this script once through sudo: sudo %s\n' \
+        "$setup_command" >&2
     exit 1
 fi
 
@@ -129,7 +131,8 @@ if [ ! -r "$sdk_header" ] || [ ! -r "$sdk_runtime" ]; then
     printf '\nTo finish setup:\n' >&2
     printf '  1. Download the Linux SDK from https://www.viture.com/developer\n' >&2
     printf '  2. Extract it without copying its licensed files into this project.\n' >&2
-    printf '  3. Rerun: sudo %s --sdk-dir /path/to/extracted-sdk\n' "$0" >&2
+    printf '  3. Rerun: sudo %s --sdk-dir /path/to/extracted-sdk\n' \
+        "$setup_command" >&2
     exit 2
 fi
 printf 'Found the VITURE SDK header and runtime at %s.\n' "$sdk_dir"
