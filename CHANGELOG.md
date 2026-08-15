@@ -6,6 +6,8 @@ categories from [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-08-15
+
 ### Added
 
 - Standard `1920x1080` and ultrawide `3840x1080` VITURE Beast display modes.
@@ -18,4 +20,5 @@ categories from [Keep a Changelog](https://keepachangelog.com/).
 - Idempotent host setup for atomic Fedora-family GNOME systems.
 - SDK-free GitHub Actions releases and optional Homebrew source integration.
 
-[Unreleased]: https://github.com/foobarto/gapia-desktop/commits/main
+[Unreleased]: https://github.com/foobarto/gapia-desktop/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/foobarto/gapia-desktop/releases/tag/v0.1.0
