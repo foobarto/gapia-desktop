@@ -20,8 +20,7 @@ extract the separately licensed Linux SDK from the
 brew tap foobarto/tap
 GAPIA_VITURE_SDK_DIR=/path/to/sdk \
   brew install --build-from-source foobarto/tap/gapia-desktop
-sudo "$(brew --prefix gapia-desktop)/share/gapia-desktop/scripts/setup-host.sh" \
-  --sdk-dir /path/to/sdk
+sudo gapia-desktop-setup-host --sdk-dir /path/to/sdk
 ```
 
 Log out and back in once so GNOME Shell can discover the panel extension, then
