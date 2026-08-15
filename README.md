@@ -18,9 +18,9 @@ extract the separately licensed Linux SDK from the
 
 ```sh
 brew tap foobarto/tap
-GAPIA_VITURE_SDK_DIR=/path/to/sdk \
+HOMEBREW_GAPIA_VITURE_SDK_DIR=/path/to/sdk \
   brew install --build-from-source foobarto/tap/gapia-desktop
-sudo gapia-desktop-setup-host --sdk-dir /path/to/sdk
+sudo gapia-desktop-setup-host
 ```
 
 Log out and back in once so GNOME Shell can discover the panel extension, then
@@ -158,8 +158,9 @@ ctest --test-dir build-viture --output-on-failure
 GitHub Actions builds and tests the SDK-independent code, packages the GNOME
 extension, audits the source boundary, and publishes a versioned source archive
 plus a generated Homebrew formula. The formula can optionally compile the
-native helper during a source install when `GAPIA_VITURE_SDK_DIR` points to a
-user-supplied SDK. No release, formula, or bottle contains VITURE SDK files.
+native helper during a source install when
+`HOMEBREW_GAPIA_VITURE_SDK_DIR` points to a user-supplied SDK. No release,
+formula, or bottle contains VITURE SDK files.
 
 Flatpak is not the primary format because the working integration needs a udev
 rule, a user systemd service, a GNOME Shell extension, session D-Bus display
