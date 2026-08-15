@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(gapia-desktop VERSION 0.1.1 LANGUAGES CXX)
+project(gapia-desktop VERSION 0.1.2 LANGUAGES CXX)
 
 option(GAPIA_ENABLE_VITURE "Build the optional official VITURE SDK backend" OFF)
 set(GAPIA_VITURE_SDK_DIR "" CACHE PATH "Root of an extracted VITURE Linux SDK")
@@ -92,11 +92,12 @@ if(BUILD_TESTING)
         add_test(NAME shell-setup-host-public-command
             COMMAND "${CMAKE_COMMAND}" -E env
                     GAPIA_SETUP_COMMAND=gapia-desktop-setup-host
+                    GAPIA_SETUP_ELEVATES=1
                     "${SH_EXECUTABLE}"
                     "${CMAKE_SOURCE_DIR}/scripts/setup-host.sh" --help)
         set_tests_properties(shell-setup-host-public-command PROPERTIES
             PASS_REGULAR_EXPRESSION
-                "Usage: sudo gapia-desktop-setup-host \\[--sdk-dir PATH\\]")
+                "Usage: gapia-desktop-setup-host \\[--sdk-dir PATH\\]")
     endif()
 endif()
 

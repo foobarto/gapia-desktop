@@ -20,7 +20,7 @@ extract the separately licensed Linux SDK from the
 brew tap foobarto/tap
 HOMEBREW_GAPIA_VITURE_SDK_DIR=/path/to/sdk \
   brew install --build-from-source foobarto/tap/gapia-desktop
-sudo gapia-desktop-setup-host
+gapia-desktop-setup-host
 ```
 
 Log out and back in once so GNOME Shell can discover the panel extension, then
@@ -30,9 +30,10 @@ connect the glasses and launch **Gapia Desktop** from GNOME or run:
 gapia-desktop
 ```
 
-The setup call is idempotent. It validates the SDK and hardware access before
-installing the udev rule, user service, settings application, icons, and panel
-indicator. The SDK is never downloaded or redistributed by Gapia Desktop.
+The setup command asks for administrator access once. It is idempotent and
+validates the SDK and hardware access before installing the udev rule, user
+service, settings application, icons, and panel indicator. The SDK is never
+downloaded or redistributed by Gapia Desktop.
 
 ## What works
 

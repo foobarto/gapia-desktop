@@ -6,6 +6,13 @@ categories from [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-08-15
+
+### Fixed
+
+- The Homebrew setup command now elevates itself by absolute path, so it works
+  with the restricted command search path used by `sudo` on Linux.
+
 ## [0.1.1] - 2026-08-15
 
 ### Fixed
@@ -27,6 +34,7 @@ categories from [Keep a Changelog](https://keepachangelog.com/).
 - Idempotent host setup for atomic Fedora-family GNOME systems.
 - SDK-free GitHub Actions releases and optional Homebrew source integration.
 
-[Unreleased]: https://github.com/foobarto/gapia-desktop/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/foobarto/gapia-desktop/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/foobarto/gapia-desktop/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/foobarto/gapia-desktop/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/foobarto/gapia-desktop/releases/tag/v0.1.0

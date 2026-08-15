@@ -598,7 +598,7 @@ def main(argv=None):
             "VITURE SDK support is not installed: native display helper is not "
             "executable at %s. Download and extract the Linux SDK from "
             "https://www.viture.com/developer, then rerun "
-            "sudo gapia-desktop-setup-host --sdk-dir /path/to/extracted-sdk",
+            "gapia-desktop-setup-host --sdk-dir /path/to/extracted-sdk",
             arguments.helper,
         )
         return 2

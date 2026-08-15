@@ -208,7 +208,7 @@ class SettingsWindow(Adw.ApplicationWindow):
             )
             self.status_label.set_tooltip_text(
                 "Download and extract the VITURE Linux SDK, then run "
-                "sudo gapia-desktop-setup-host --sdk-dir /path/to/extracted-sdk"
+                "gapia-desktop-setup-host --sdk-dir /path/to/extracted-sdk"
             )
         self.refresh_hardware_settings()
         GLib.timeout_add_seconds(1, self.refresh_status)
