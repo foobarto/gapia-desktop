@@ -9,6 +9,32 @@ The first supported device is VITURE Beast on GNOME 50.
 This independent project is not affiliated with or endorsed by VITURE. It is
 offline-first and contains no telemetry, account, or network runtime.
 
+## Install
+
+The verified target is VITURE Beast on GNOME 50 Wayland. Install
+[Homebrew on Linux](https://docs.brew.sh/Homebrew-on-Linux), then download and
+extract the separately licensed Linux SDK from the
+[VITURE developer portal](https://www.viture.com/en-US/developer).
+
+```sh
+brew tap foobarto/tap
+GAPIA_VITURE_SDK_DIR=/path/to/sdk \
+  brew install --build-from-source foobarto/tap/gapia-desktop
+sudo "$(brew --prefix gapia-desktop)/share/gapia-desktop/scripts/setup-host.sh" \
+  --sdk-dir /path/to/sdk
+```
+
+Log out and back in once so GNOME Shell can discover the panel extension, then
+connect the glasses and launch **Gapia Desktop** from GNOME or run:
+
+```sh
+gapia-desktop
+```
+
+The setup call is idempotent. It validates the SDK and hardware access before
+installing the udev rule, user service, settings application, icons, and panel
+indicator. The SDK is never downloaded or redistributed by Gapia Desktop.
+
 ## What works
 
 - Standard `1920x1080@60` with anchored 3DoF, smooth follow, or 0DoF.
@@ -69,7 +95,7 @@ Native ultrawide requires anchored 3DoF. Standard mode also supports
 `extra-large`, or `ultra-large`; the latter is an apparent-size setting and is
 not the ultrawide display mode.
 
-## Setup
+## Setup from source
 
 On an atomic Fedora-family GNOME host, setup is one idempotent privileged call:
 
