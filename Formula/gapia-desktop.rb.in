@@ -2,7 +2,6 @@ class GapiaDesktop < Formula
   desc "GNOME display controls for VITURE XR glasses"
   homepage "https://github.com/@GITHUB_REPOSITORY@"
   url "@SOURCE_URL@"
-  version "@VERSION@"
   sha256 "@SHA256@"
   license any_of: ["MIT", "Apache-2.0"]
 
