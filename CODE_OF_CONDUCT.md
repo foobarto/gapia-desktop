@@ -25,10 +25,10 @@ or permanently restrict participation when behavior conflicts with these
 standards. Enforcement decisions should consider context, severity, recurrence,
 and the safety of affected participants.
 
-Report conduct concerns privately through a contact method listed on a
-maintainer's GitHub profile. Do not use a public issue. Reports will be handled
-with discretion, but absolute confidentiality cannot be guaranteed where
-action or legal compliance requires disclosure.
+Report conduct concerns privately to `bartosz@foobarto.me` with `[conduct]`
+in the subject. Do not use a public issue. Reports will be handled with
+discretion, but absolute confidentiality cannot be guaranteed where action or
+legal compliance requires disclosure.
 
 This code applies in project spaces and when someone is publicly representing
 the project.

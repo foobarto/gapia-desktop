@@ -15,6 +15,12 @@ Use GitHub's **Security** tab and select **Report a vulnerability** to open a
 private security advisory. Do not include exploit details, sensitive logs, or
 private device information in a public issue.
 
+If private reporting is unavailable, email `bartosz@foobarto.me` with
+`[gapia-security]` in the subject. PGP is strongly preferred for sensitive
+material; the public key and fingerprint are listed in the
+[account-wide security policy](https://github.com/foobarto/.github/blob/main/SECURITY.md),
+which also contains the general rules of engagement and safe-harbor statement.
+
 Include, when relevant:
 
 - affected commit or release;
